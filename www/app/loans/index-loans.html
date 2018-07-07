@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Rutas</title>
+    <style>
+    body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+
+    .header .col {
+        background-color:#11c1f3;
+        color: #ffffff;
+
+    }
+
+    .col {
+        border: solid 1px #11c1f3;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+
+    .col:last-child {
+        border-right: solid 1px #11c1f3;
+    }
+
+    .row:last-child .col {
+        border-bottom: solid 1px #11c1f3;
+    }
+    .color1{
+      background-color: #FFF;
+    }
+    .color2{
+      background-color: #A6E9AF;
+    }
+    .color3{
+      background-color: #AAE;
+    }
+    </style>
+  <body>
+    <!--ion-header-bar class="bar-stable">
+
+</ion-header-bar-->
+<ion-view view-title="Seleccionar Vehículos" >
+<ion-content delegate-handle="myPageDelegate">
+
+  <div class="row header">
+      <div class="col ">No. de Móvil</div>
+  </div>
+  
+    <div class="row" ng-repeat="vehiculo in loans.listaVehiculos">
+      <div  id="{{vehiculo.dp_vehiculo}}" class="col " ng-click="loans.consultarRecorridos({{vehiculo.dp_vehiculo}})" >
+          <label style="font-size:16px;">
+          {{vehiculo.dp_vehiculo}}
+            </label>
+          </div>
+        
+    </div>
+ 
+</ion-content>
+</ion-view>
+  </body>
+</html>

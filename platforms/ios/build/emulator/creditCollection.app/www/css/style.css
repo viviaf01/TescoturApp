@@ -1,0 +1,41 @@
+/* Empty. Add your own CSS if you like */
+.payed {
+    background-color: #BCF6AA;
+    width: 20px;
+    height: 50px;
+    font-size:12pt;
+}
+.no-payed {
+    background-color: #CDEEF3;
+    width: 20px;
+    height: 50px;
+    font-size: 12pt;
+}
+.payed-t{
+    background-color:orange;
+    width: 20px;
+    height: 50px;
+    font-size: 12pt;
+}
+
+.bt-eliminar{
+    background-color:#ac2925;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 40px;
+    
+}
+.color1{
+  background-color: #FFF;
+}
+.color2{
+  background-color: #A6E9AF;
+}
+.color3{
+  background-color: #AAE;
+}
+.color4{
+  background-color: #E9AFA2;
+}

@@ -1,0 +1,37 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+  <!-- Loans Tab -->
+  <ion-tab title="Ruta" icon-off="ion-cash" icon-on="ion-cash" href="#/tab/loan">
+    <ion-nav-view name="tab-loan"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Payments Tab -->
+  <ion-tab title="Tarjetas" icon-off="ion-card" icon-on="ion-card" href="#/tab/payments">
+    <ion-nav-view name="tab-payments"></ion-nav-view>
+  </ion-tab>
+
+  <!-- dailyExpenses Tab -->
+  <ion-tab title="Gastos" icon-off="ion-pricetags" icon-on="ion-pricetags" href="#/tab/dailyExpenses">
+    <ion-nav-view name="tab-dailyexpenses"></ion-nav-view>
+  </ion-tab>
+
+   <!-- Clients Tab -->
+  <ion-tab title="Clientes" icon-off="ion-person" icon-on="ion-person" href="#/tab/clients">
+    <ion-nav-view name="tab-clients"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Sync Tab -->
+  <ion-tab title="Sincronizar" icon-off="ion-ios-cloud-upload-outline" icon-on="ion-ios-cloud-upload-outline" href="#/tab/sync">
+    <ion-nav-view name="tab-sync"></ion-nav-view>
+  </ion-tab>
+
+  <!--ion-tab title="Configuración" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/dash">
+    <ion-nav-view name="tab-dash"></ion-nav-view>
+  </ion-tab-->
+
+</ion-tabs>

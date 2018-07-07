@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Rutas</title>
+    <style>
+    body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+
+    .header .col {
+        background-color:#11c1f3;
+        color: #ffffff;
+
+    }
+
+    .col {
+        border: solid 1px #11c1f3;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+
+    .col:last-child {
+        border-right: solid 1px #11c1f3;
+    }
+
+    .row:last-child .col {
+        border-bottom: solid 1px #11c1f3;
+    }
+    .color1{
+      background-color: #FFF;
+    }
+    .color2{
+      background-color: #A6E9AF;
+    }
+    .color3{
+      background-color: #AAE;
+    }
+    </style>
+  <body>
+    <!--ion-header-bar class="bar-stable">
+
+</ion-header-bar-->
+<ion-view view-title="Ruta" >
+<ion-content delegate-handle="myPageDelegate">
+  <!--h1 class="title">Ruta</h1-->
+  <div class="row">
+    <div class="col"><input type='text' onkeyup="this.value=this.value.toUpperCase();" name='cliente' style="width:100%;" ng-model="loans.buscarcliente" placeholder='Cliente' >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-50">
+    <button class="button button-block button-calm" ng-click="loans.consultarCliente()">Buscar</button>
+    </div>
+     <div class="col col-50">
+    <button class="button button-block button-calm" ng-click="loans.borrarConsulta()">Cancelar</button>
+
+    </div>
+</div>
+<div class="row">
+  
+    <div class="col col-25" >Clientes: {{loans.total_clientes}}</div>
+    <div class="col col-40">T. Recaudo: {{loans.cartera[0].total_recaudo}}</div>
+    <div class="col col-35" >Cliente Pago: {{loans.cartera[0].clientes_pago}}</div>
+</div>
+  
+    <div class="row header">
+      <div class="col col-50">Cliente</div>
+      <div class="col col-30" >Vr Pagado</div>
+      <div class="col col-20" >Renovar</div>
+    </div>
+  
+    <div class="row" ng-repeat="customer in loans.customerList">
+      <div  id="{{customer.contarjeta}}" class="col col-50 {{loans.colores(customer.contarjeta,customer.dias_np,customer.cuotaspendientes)}}" ng-click="loans.consultarTarjeta({{customer.contarjeta}})" >
+          <label style="font-size:16px;">
+          {{customer.nombre}}
+            </label>
+          </div>
+      <div class="col col-30 {{loans.colores(customer.contarjeta,customer.dias_np,customer.cuotaspendientes)}}" >{{customer.detvalor| currency}}</div>
+      <div class="col col-20 {{loans.colores(customer.contarjeta,customer.dias_np,customer.cuotaspendientes)}}" ><button class="button button-warning" ng-disabled="!customer.finalizada" ng-click="loans.renovarTarjeta({{customer.contarjeta}})">R</button></div>
+
+    </div>
+ 
+</ion-content>
+</ion-view>
+  </body>
+</html>

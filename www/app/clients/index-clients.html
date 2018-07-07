@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Rutas</title>
+    <style>
+    body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+
+    .header .col {
+        background-color:#11c1f3;
+        color: #ffffff;
+
+    }
+
+    .col {
+        border: solid 1px #11c1f3;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+
+    .col:last-child {
+        border-right: solid 1px #11c1f3;
+    }
+
+    .row:last-child .col {
+        border-bottom: solid 1px #11c1f3;
+    }
+    .title{
+      color:#11c1f3;
+
+    }
+    </style>
+  <body>
+    <ion-header-bar class="bar-stable">
+
+</ion-header-bar>
+<ion-view view-title="Clientes">
+<ion-content>
+
+    <!--h1 class="title">Tarjetas</h1-->
+  <form name="formcliente" novalidate>
+  <div class="row">
+
+      <div class="col">
+          <input type='number' style="width:100%" name='identificacion' placeholder='Identificacion' ng-model="clients.data.idcliente" required >
+          <span ng-show="formcliente.identificacion.$error.required"><b>Indentificacion obligatorio</b></span>
+        <input type='text' onkeyup="this.value=this.value.toUpperCase()" onblur="this.value=this.value.toUpperCase();" name='nombre' style="width:100%" required placeholder='Nombre' ng-model="clients.data.nombre" >
+        <span ng-show="formcliente.nombre.$error.required"><b>Nombre obligatorio</b></span>
+        <input type='text' onkeyup="this.value=this.value.toUpperCase();" onblur="this.value=this.value.toUpperCase();" name='ocupacion' style="width:100%" placeholder='Ocupacion' ng-model="clients.data.ocupacion" >
+
+        <input type='text' onkeyup="this.value=this.value.toUpperCase();"  onblur="this.value=this.value.toUpperCase();" required name='direccion' style="width:100%" placeholder='Direccion' ng-model="clients.data.dir" >
+        <span ng-show="formcliente.direccion.$error.required"><b>Direccion obligatorio</b></span>
+        <input type='text' required name='telefono' style="width:100%" placeholder='Telefono' ng-model="clients.data.numtelefono" >
+        <span ng-show="formcliente.telefono.$error.required"><b>Telefono obligatorio</b></span>
+
+
+          <button class="button button-block button-calm" ng-disabled="formcliente.$invalid" ng-click="clients.guardarCliente()" >Guardar</button>
+    </div>
+</div>
+</form>
+
+<div class="row">
+
+      <div class="col">
+          <button class="button button-block button-calm" ng-click="clients.consultarCliente()" >Actualizar Consulta</button>
+      </div>
+</div>
+
+    <div class="row header">
+      <div class="col">Cliente</div>
+      <div class="col">Telefono</div>
+
+
+    </div>
+    <div class="row" ng-repeat="clientes in clients.clientesList">
+
+      <div class="col">{{clientes.nombre}}</div>
+      <div class="col">{{clientes.numtelefono}}</div>
+
+      </div>
+
+
+
+    </div>
+</ion-content>
+</ion-view>
+  </body>
+</html>

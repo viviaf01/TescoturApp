@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Gastos</title>
+    <style>
+    body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+
+    .header .col {
+        background-color:#11c1f3;
+        color: #ffffff;
+
+    }
+
+    .col {
+        border: solid 1px #11c1f3;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+
+    .col:last-child {
+        border-right: solid 1px #11c1f3;
+    }
+
+    .row:last-child .col {
+        border-bottom: solid 1px #11c1f3;
+    }
+
+    /*AUTOCOMPLETE*/
+        .typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+    </style>
+  </head>
+  <body>
+    
+<ion-view view-title="Gastos">
+<ion-content>
+    <!--h1 class="title">Gastos</h1-->
+  <div class="row">
+        <div class="col">
+          <form name="regGasto" novalidate >
+              <!--  -->
+              <input type="text" name="concepto" ng-blur="dailyExpenses.verificarTipoGasto()" required ng-model="dailyExpenses.data.idconceptoegreso"  placeholder="Concepto de gasto" uib-typeahead="state as state.nombre for state in dailyExpenses.expensesTypeList | filter:{nombre:$viewValue}" class="form-control" typeahead-show-hint="true" typeahead-min-length="0">
+              
+              <span ng-show="regGasto.concepto.$error.required"><b>Seleccione un concepto</b></span>
+              <input type='number' name='valor' style="width:100%;" ng-readonly="dailyExpenses.valReq" placeholder='Valor' required ng-model="dailyExpenses.data.valor" >
+              <span ng-show="regGasto.valor.$error.required"><b>Valor obligatorio</b></span>
+              <input onkeyup="this.value=this.value.toUpperCase();" type='text' style="width:100%" ng-required="dailyExpenses.reqObs" name='observaciones' placeholder='Observaciones' ng-model="dailyExpenses.data.observaciones" >
+              <span   ng-show="regGasto.observaciones.$error.required"><b>Observaciones obligatorio</b></span>
+            <button class="button button-block button-calm" ng-disabled="regGasto.$invalid" ng-click="dailyExpenses.guardarGasto()">Guardar</button>
+
+        </form>
+      </div>
+  </div>
+
+<br>
+    <div class="row header">
+      <div class="col col-50">Tipo</div>
+      <div class="col col-30">Valor</div>
+      <div class="col col-20"></div>
+    </div>
+    <div class="row" ng-repeat="gastos in dailyExpenses.gastosList">
+
+        <div class="col col-50">{{gastos.nombre}}</div>
+        <div class="col col-30">{{gastos.valor| currency}}</div>
+        <div class="col col-20">
+            <button class="bt-eliminar" ng-click="dailyExpenses.askEliminarGasto({{gastos.idegreso}})"> X </button>
+        </div>
+     </div>
+
+</ion-content>
+</ion-wiew>
+  </body>
+</html>

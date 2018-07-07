@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Rutas</title>
+    <style>
+    body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+
+    .header .col {
+        background-color:#11c1f3;
+        color: #ffffff;
+
+    }
+
+    .col {
+        border: solid 1px #11c1f3;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+
+    .col:last-child {
+        border-right: solid 1px #11c1f3;
+    }
+
+    .row:last-child .col {
+        border-bottom: solid 1px #11c1f3;
+    }
+    .title{
+      color:#11c1f3;
+
+    }
+
+/*AUTOCOMPLETE*/
+  .typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+
+
+    </style>
+  <body>
+    <ion-header-bar class="bar-stable">
+
+</ion-header-bar>
+<ion-view view-title="Renovar Tarjetas">
+<ion-content>
+ <form name="myForm" novalidate>
+    <!--h1 class="title">Tarjetas</h1-->
+ <div ng-repeat="detalle in Renovation.dettarj">
+  <div class="row">
+
+        <div class="col col-25">Cliente</div>
+        <div class="col">
+          <!--  input type="text"  ng-autocomplete ng-model="Renovation.data.cliente" options="x.nombre for x in Renovation.customerList" /-->
+          <input type='text' ng-value="detalle.nombre" ng-model="Renovation.data.cliente" >
+
+          <input type="hidden" ng-value='{{detalle.concliente}}'  ng-model="Renovation.data.concliente"  >
+
+            <!--select ng-model="Renovation.data.cliente" ng-options="x.nombre for x in Renovation.customerList" ></select-->
+        </div>
+</div>
+<div class="row">
+
+        <div class="col">No. Tarjeta</div>
+        <div class="col">
+            <input type='text' readonly="" ng-value="{{Renovation.numTarjeta}}" ng-model="Renovation.data.numerotarjeta" >
+        </div>
+</div>
+<div class="row">
+
+        <div class="col col-33">Vr. Prestamo</div>
+        <div class="col">
+            <input type='number' style="width:100%;" required  name='prestamo' min="1" max='{{Renovation.maxPrestamo}}' ng-value='{{detalle.valprestamo}}'  ng-change="Renovation.calcularVrPagar()" ng-model="Renovation.data.valprestamo" >
+            <span ng-show="myForm.prestamo.$error.required"><b>Vr Prestamo Obligatorio</b></span>
+            </div>
+</div>
+<div class="row">
+
+    <div class="col"><label style="font-size:16px;"><input type="checkbox" ng-model="Renovation.data.preespecial" ng-checked="false">Especial</label></div>
+
+</div>
+<div class="row">
+
+        <div class="col col-33">Vr. Pagar</div>
+        <div class="col">
+            <input type='number' name='vrpagar' required  ng-readonly="!Renovation.data.preespecial" ng-value="{{Renovation.valpagar}}"   ng-model="Renovation.data.valpagar" >
+            
+        
+        </div>
+</div>
+
+<div class="row">
+
+        <div class="col col-33">No. Cuotas</div>
+        <div class="col">
+            <input type='number' style="width:100%;" name="num_cuota"  ng-value='{{detalle.numcuotas}}' required  placeholder='' min="1" max="{{Renovation.numerocuotas}}"  ng-change="Renovation.calcularCuotas()" ng-model="Renovation.data.numcuotas" >
+            <span ng-show="myForm.num_cuota.$error.max"><b>Maximo {{Renovation.numerocuotas}} cuotas</b></span>
+            </div>
+</div>
+
+<div class="row">
+
+        <div class="col col-33">Vr. Cuota</div>
+        <div class="col">
+            <input type='number' style="width:100%;" required ng-readonly="true" ng-value="{{Renovation.data.valcuota}}"  placeholder='' ng-model="Renovation.data.valcuota" >
+            </div>
+</div>
+
+<div class="row">
+
+        <div class="col col-20">F. Prest</div>
+        <div class="col">
+            <input type='text' style="width:100%;" ng-readonly="true" placeholder='' ng-value="{{Renovation.fecha}}" ng-model="Renovation.data.fecprestamo" >
+            </div>
+
+
+        <div class="col col-20">F. Final</div>
+        <div class="col col-33">
+            <input type='text' style="width:100%;" ng-readonly="true" placeholder='' ng-model="Renovation.data.fecfinal" ng-value="{{Renovation.data.fecfinal}}" >
+            </div>
+</div>
+<div class="row">
+    <div class="col col-50">
+    <button class="button button-block button-calm" ng-disabled="myForm.$invalid"  ng-click="Renovation.guardarTarjeta()">Guardar</button>
+
+    </div>
+    <div class="col col-50">
+        <button class="button button-block button-calm" ng-click="Renovation.salir()">Cancelar</button>
+    </div>
+</div>
+
+</div>
+
+</form>
+
+</ion-content>
+</ion-view>
+  </body>
+</html>

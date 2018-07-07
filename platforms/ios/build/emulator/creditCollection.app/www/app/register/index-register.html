@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Rutas</title>
+    <style>
+    body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+
+    .header .col {
+        background-color:#11c1f3;
+        color: #ffffff;
+
+    }
+
+    .col {
+        border: solid 1px #11c1f3;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+
+    .col:last-child {
+        border-right: solid 1px #11c1f3;
+    }
+
+    .row:last-child .col {
+        border-bottom: solid 1px #11c1f3;
+    }
+    </style>
+  <body>
+    <!--ion-header-bar class="bar-stable">
+
+</ion-header-bar-->
+<ion-view view-title="Registro de Pago" cache-view="false" >
+<ion-content>
+
+  <!--h1 class="title">Ruta</h1-->
+  <form name="formReg" novalidate >
+   <div ng-repeat="detalle in register.dettarj">
+   <div class="row" >
+      <div class="col">{{detalle.nombre}}</div>
+      <div class="col">{{detalle.valprestamo}}</div>
+    </div>
+    <div class="row" >
+      <div class="col">Paga: {{detalle.valcuota}}</div>
+      <div class="col">F Prest: {{detalle.fecprestamo}}</div>
+    </div>
+    <div class="row" >
+      <div class="col">Saldo: {{detalle.saldo}}</div>
+      <div class="col">F. Vence: {{detalle.fecfinal}}</div>
+    </div>
+    <div class="row" >
+        <div class="col col-40">No. Cuotas: {{detalle.numcuotas}}<br><b>Tiene {{register.vr_tiene}}</b></div>
+      <div class="col col-60">
+          <input type='number' name='vrpagado' placeholder="Vr a Pagar" ng-model="register.data.vrpagado" style="width:100%;" min="1" max="{{detalle.saldo}}" required >
+            <span ng-show="formReg.vrpagado.$error.required"><b>Vr a Pagar Obligatorio</b></span>
+            <span ng-show="formReg.vrpagado.$error.max"><b>Valor Máximo {{detalle.saldo}}</b></span>
+          <input type='hidden' name='contarjeta' ng-model="register.data.contarjeta" ng-value="{{detalle.contarjeta}}"  >
+          <input type='hidden' name='valpagado' ng-model="register.data.valpagado" ng-value="{{detalle.valpagado}}"  >
+          
+      </div>
+    </div>
+    <div class="row" >
+        <div class="col col-50">
+          <button class="button button-block button-calm" ng-disabled="formReg.$invalid" ng-click="register.guardarPago()">Guardar</button>
+        </div>
+
+       <div class="col col-50">
+           <button class="button button-block button-calm" ng-disabled='register.detpago'  ng-click="register.askEliminarPago()">EliminarPago</button>
+       </div>
+    </div>
+  </form>
+      <div ng-repeat="cuotasCuadro in register.ncuotas track by $index" >
+        <div ng-repeat="cuotasFila in cuotasCuadro track by $index" class="row">
+            <!-- -->
+            <div ng-repeat="cuotaCol in cuotasFila track by $index" ng-click="register.askGuardarPagoAuto(register.data.contarjeta,{{cuotaCol>0?cuotaCol:0}},'{{cuotaCol<=register.cuotaUltimaPaga && cuotaCol>0?'payed':(cuotaCol<=register.nCPagas && cuotaCol>0?'payed-t':'no-payed')}}')" class="col col-25 {{cuotaCol<=register.cuotaUltimaPaga && cuotaCol>0?'payed':(cuotaCol<=register.nCPagas && cuotaCol>0?'payed-t':'no-payed')}}">
+            {{cuotaCol>0?cuotaCol:' '}}
+            
+             
+          </div>
+        </div>
+      </div>
+</ion-content>
+</ion-view>
+  </body>
+</html>

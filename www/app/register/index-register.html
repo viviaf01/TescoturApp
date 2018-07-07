@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Rutas</title>
+    <style>
+    body {
+        cursor: url('http://ionicframework.com/img/finger.png'), auto;
+    }
+
+    .header .col {
+        background-color:#11c1f3;
+        color: #ffffff;
+
+    }
+
+    .col {
+        border: solid 1px #11c1f3;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+
+    .col:last-child {
+        border-right: solid 1px #11c1f3;
+    }
+
+    .row:last-child .col {
+        border-bottom: solid 1px #11c1f3;
+    }
+    .button_Iniciado{
+        background-color: green;
+        
+    }
+    .button_Finalizado{
+        background-color: red;
+        
+        
+    }
+    </style>
+  <body>
+    <!--ion-header-bar class="bar-stable">
+
+</ion-header-bar-->
+<ion-view view-title="Recorridos del dìa" cache-view="false" >
+<ion-content>
+
+  <!--h1 class="title">Ruta</h1-->
+        <div class="row header">
+            <!--div class="col col-20 ">Cliente</div-->
+            <div class="col col-25 ">Frente</div>
+            <div class="col col-25 ">Ruta</div>
+            <div class="col col-20 ">Horario</div>
+           
+            <div class="col col-20">&nbsp;</div>
+                
+        </div>
+  
+      <div class="row" ng-repeat="tareas in register.tareas">
+      <!--div  id="{{tareas.dp_recorrido}}" class="col col-20 " ng-click="loans.consultarRecorridos({{tareas.dp_recorrido}})" >
+          <label style="font-size:16px;">
+          {{tareas.dp_cl_nombre}}
+          
+            </label>
+          </div-->
+      
+          <div class="col col-25">{{tareas.dp_fr_nombre}}</div>
+          <div class="col col-25">{{tareas.dp_ru_nombre}}</div>
+          <div class="col col-20">{{tareas.dp_hinicio | limitTo:5:11}} / {{tareas.dp_hfinal| limitTo:5:11}}</div>
+          
+          <div class="col col-20">
+              <button ng-disabled="tareas.iniciarBoton"  class="button button-small button_{{tareas.td_estado}}" id="button_{{tareas.dp_id}}" ng_name="button_{{tareas.dp_id}}"  ng-click="register.iniciarRuta({{tareas.dp_id}},{{tareas.dp_recorrido}},{{tareas.dp_vehiculo}},'{{tareas.td_estado}}')">Iniciar</button>
+              <button ng-disabled="tareas.finalizarBoton"  class="button button-small button_{{tareas.td_estado}}" id="button_{{tareas.dp_id}}" ng_name="button_{{tareas.dp_id}}"  ng-click="register.finalizarRuta({{tareas.dp_id}},{{tareas.dp_recorrido}},{{tareas.dp_vehiculo}},'{{tareas.td_estado}}')">Finalizar</button>
+          <!--button class="button button-small">Finalizar</button-->
+          <button class="button button-small">FUEC</button></div>
+        
+    </div>
+</ion-content>
+</ion-view>
+  </body>
+</html>

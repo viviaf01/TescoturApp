@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+  <body>
+    <ion-view view-title="Login" name="login-view" view-cache='false'>
+      <ion-content class="padding">
+          <div class="list list-inset">
+              <label class="item item-input">
+                  <input type="text" placeholder="Numero de cédula" onkeyup="this.value=this.value.toUpperCase();" onblur="this.value=this.value.toUpperCase();" ng-model="data.username">
+              </label>
+              <label class="item item-input">
+                  <input type="password" placeholder="Codigo" ng-model="data.password">
+              </label>
+          </div>
+          <button class="button button-block button-calm" ng-click="login()">Login</button>
+      </ion-content>
+    </ion-view>
+  </body>
+</html>
